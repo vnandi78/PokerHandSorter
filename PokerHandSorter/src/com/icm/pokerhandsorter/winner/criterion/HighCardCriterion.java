@@ -14,7 +14,7 @@ import com.icm.pokerhandsorter.players.Player;
  */
 public class HighCardCriterion {
 
-	public static boolean isItHighCardScenario(List<Card> player1Cards, List<Card> player2Cards){
+	public static boolean isItHighCardScenario(List<Card> playerCards){
 		return false;
 	}
 

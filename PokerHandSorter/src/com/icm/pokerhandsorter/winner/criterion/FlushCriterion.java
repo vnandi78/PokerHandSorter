@@ -14,7 +14,7 @@ import com.icm.pokerhandsorter.players.Player;
  */
 public class FlushCriterion {
 	
-	public static boolean isItFlushScenario(List<Card> player1Cards, List<Card> player2Cards){
+	public static boolean isItFlushScenario(List<Card> playerCards){
 		return false;
 	}
 

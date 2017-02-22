@@ -14,7 +14,7 @@ import com.icm.pokerhandsorter.players.Player;
  */
 public class TwoPairsCriterion {
 	
-	public static boolean isItTwoPairScenario(List<Card> player1Cards, List<Card> player2Cards){
+	public static boolean isItTwoPairScenario(List<Card> playerCards){
 		return false;
 	}
 

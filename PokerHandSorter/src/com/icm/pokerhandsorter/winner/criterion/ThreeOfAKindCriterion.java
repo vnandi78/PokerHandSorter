@@ -14,7 +14,7 @@ import com.icm.pokerhandsorter.players.Player;
  */
 public class ThreeOfAKindCriterion {
 	
-	public static boolean isItThreeOfAKindScenario(List<Card> player1Cards, List<Card> player2Cards){
+	public static boolean isItThreeOfAKindScenario(List<Card> playerCards){
 		return false;
 	}
 

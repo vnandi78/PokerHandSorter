@@ -14,7 +14,7 @@ import com.icm.pokerhandsorter.players.Player;
  */
 public class StraightFlushCriterion {
 
-	public static boolean isItStraightFlushScenario(List<Card> player1Cards, List<Card> player2Cards){
+	public static boolean isItStraightFlushScenario(List<Card> playerCards){
 		return false;
 	}
 

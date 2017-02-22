@@ -14,7 +14,7 @@ import com.icm.pokerhandsorter.players.Player;
  */
 public class RoyalFlushCriterion {
 	
-	public static boolean isItRoyalFlushScenario(List<Card> player1Cards, List<Card> player2Cards){
+	public static boolean isItRoyalFlushScenario(List<Card> playerCards){
 		return false;
 	}
 
