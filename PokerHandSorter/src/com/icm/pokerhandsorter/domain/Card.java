@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.icm.pokerhandsorter.cards;
+package com.icm.pokerhandsorter.domain;
 
 /**
  * @author VDRKumar

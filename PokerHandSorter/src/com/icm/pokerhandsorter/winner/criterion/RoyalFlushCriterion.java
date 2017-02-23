@@ -3,19 +3,23 @@
  */
 package com.icm.pokerhandsorter.winner.criterion;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.stream.Collectors;
 
-import com.icm.pokerhandsorter.cards.Card;
-import com.icm.pokerhandsorter.players.Player;
+import com.icm.pokerhandsorter.domain.Card;
+import com.icm.pokerhandsorter.domain.Player;
+import com.icm.pokerhandsorter.domain.Rank;
 
 /**
  * @author VDRKumar
  *
  */
-public class RoyalFlushCriterion {
+public class RoyalFlushCriterion implements RankingCriterion{
 	
-	public static boolean isItRoyalFlushScenario(List<Card> playerCards){
+	private boolean isItRoyalFlushScenario(List<Card> playerCards){
 		LinkedHashSet<String> suiteSet = new LinkedHashSet<String>();
 		LinkedHashSet<String> numberSet = new LinkedHashSet<String>();
 		
@@ -45,18 +49,26 @@ public class RoyalFlushCriterion {
 		return false;
 	}
 
-	public static Player determineRoyalFlushWinner(Player player1, Player player2){
+	public void assignRanks(Player player){
 		
-		//--If royal flush scenario is true for player 1 then return him to winning podium
-		if(isItRoyalFlushScenario(player1.getCards())){
-			return player1;
-		}
-		//--If royal flush scenario is true for player 2 then return him to winning podium
-		else if(isItRoyalFlushScenario(player2.getCards())){
-			return player2;
+		List<Card[]> allCards = player.getCards();
+		List<Rank> ranks = new ArrayList<Rank>();
+	
+		for(Card[] cards : allCards){
+			List<Card> fiveCards = Arrays.stream(cards).collect(Collectors.toList());
+			
+			//--If royal flush scenario is true for player 1 then return him to winning podium
+			if(isItRoyalFlushScenario(fiveCards)){
+				Rank rank = new Rank();
+				rank.setCorrespondingCards(fiveCards);
+				rank.setRank(10);
+				rank.setPlayerName(player.getName());
+				ranks.add(rank);
+			}
 		}
 		
-		return null;
+		player.setRanks(ranks);	
+		
 	}
 
 }

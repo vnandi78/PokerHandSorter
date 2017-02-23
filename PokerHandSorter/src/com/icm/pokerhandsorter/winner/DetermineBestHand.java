@@ -6,8 +6,8 @@ package com.icm.pokerhandsorter.winner;
 import java.util.List;
 import java.util.Map;
 
-import com.icm.pokerhandsorter.cards.Card;
-import com.icm.pokerhandsorter.players.Player;
+import com.icm.pokerhandsorter.domain.Card;
+import com.icm.pokerhandsorter.domain.Player;
 
 /**
  * @author VDRKumar

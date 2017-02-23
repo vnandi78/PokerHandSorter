@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.Scanner;
 
-import com.icm.pokerhandsorter.cards.Card;
-import com.icm.pokerhandsorter.players.Player;
+import com.icm.pokerhandsorter.domain.Card;
+import com.icm.pokerhandsorter.domain.Player;
 import com.icm.pokerhandsorter.winner.DetermineBestHand;
 
 public class MyPokerSolution {
@@ -26,10 +26,10 @@ public class MyPokerSolution {
 		player2.setName("Player2");
 		
 		//---Init Cards for Player 1
-		ArrayList<Card> player1cards = new ArrayList<Card>();
+		ArrayList<Card[]> player1cards = new ArrayList<Card[]>();
 
 		//---Init Cards for Player 2
-		ArrayList<Card> player2cards = new ArrayList<Card>();
+		ArrayList<Card[]> player2cards = new ArrayList<Card[]>();
 		
 		//--Reading input from command line
 		while(scanner.hasNextLine()){
@@ -40,6 +40,9 @@ public class MyPokerSolution {
 			System.out.println("inputArray = " + inputArray);
 			
 			int i=0;
+			int j=0;
+			Card[] cards1 = new Card[]{};
+			Card[] cards2 = new Card[]{};
 			
 			for(String input: inputArray){
 				//----build card with the given information
@@ -51,11 +54,19 @@ public class MyPokerSolution {
 		
 				if(i<5){
 					//--First 5 cards always belong to Player 1
-					player1cards.add(card);
+					cards1[i] = card;
+					if(i==4){
+						player1cards.add(cards1);
+					}
 				}
 				else if(i>4 && i<10){
 					//--Next 5 cards always belong to Player 2
-					player2cards.add(card);					
+					cards2[j] = card;
+					if(i==9){
+						player2cards.add(cards2);
+						j=0;
+					}
+					j++;					
 				}
 				else{
 					i = 0;
