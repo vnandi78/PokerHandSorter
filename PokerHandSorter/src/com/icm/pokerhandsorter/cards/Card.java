@@ -36,7 +36,9 @@ public class Card {
 		this.suite = suite;
 	}
 	
-	
+	public String toString(){
+		return this.getNumber()+this.getSuite();		
+	}
 	
 
 }
