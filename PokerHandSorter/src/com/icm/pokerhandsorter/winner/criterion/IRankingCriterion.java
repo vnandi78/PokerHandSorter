@@ -9,7 +9,7 @@ import com.icm.pokerhandsorter.domain.Player;
  * @author VDRKumar
  *
  */
-public interface RankingCriterion {
+public interface IRankingCriterion {
 	
 	public void assignRanks(Player player);
 

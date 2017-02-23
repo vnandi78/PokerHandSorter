@@ -17,7 +17,7 @@ import com.icm.pokerhandsorter.domain.Rank;
  * @author VDRKumar
  *
  */
-public class StraightFlushCriterion implements RankingCriterion {
+public class StraightFlushCriterion implements IRankingCriterion {
 
 	private boolean isItStraightFlushScenario(List<Card> playerCards){
 		LinkedHashSet<String> suiteSet = new LinkedHashSet<String>();

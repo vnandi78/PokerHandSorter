@@ -18,7 +18,7 @@ import com.icm.pokerhandsorter.domain.Rank;
  * @author VDRKumar
  *
  */
-public class FullHouseCriterion implements RankingCriterion{
+public class FullHouseCriterion implements IRankingCriterion{
 	
 	private boolean isItFullHouseScenario(List<Card> playerCards){
 		List<String> numberList = new ArrayList<String>();

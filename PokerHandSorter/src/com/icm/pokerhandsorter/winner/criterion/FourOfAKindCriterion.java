@@ -18,7 +18,7 @@ import com.icm.pokerhandsorter.domain.Rank;
  * @author VDRKumar
  *
  */
-public class FourOfAKindCriterion implements RankingCriterion {
+public class FourOfAKindCriterion implements IRankingCriterion {
 	
 	private boolean isItFourOfAKindScenario(List<Card> playerCards){
 		
