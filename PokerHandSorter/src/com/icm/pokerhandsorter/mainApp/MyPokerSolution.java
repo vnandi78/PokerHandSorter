@@ -39,7 +39,6 @@ public class MyPokerSolution {
 			
 			//--Split each line by space to collect each card information
 			String[] inputArray = line.split("\\s");
-			System.out.println("inputArray = " + inputArray);
 			
 			int i=0;
 			int j=0;
@@ -50,7 +49,24 @@ public class MyPokerSolution {
 				//----build card with the given information
 				Card card = new Card();
 				//---Assign card the given number
-				card.setNumber(input.substring(0,1));
+				String number = input.substring(0,1);
+				if(number.equalsIgnoreCase("A")){
+					number = "14";					
+				}
+				if(number.equalsIgnoreCase("K")){
+					number = "13";
+				}
+				if(number.equalsIgnoreCase("Q")){
+					number = "12";
+				}
+				if(number.equalsIgnoreCase("J")){
+					number = "11";
+				}
+				if(number.equalsIgnoreCase("T")){
+					number = "10";
+				}
+				
+				card.setNumber(Integer.parseInt(number));
 				//---Assign card the given suite
 				card.setSuite(input.substring(1));
 		
@@ -78,7 +94,6 @@ public class MyPokerSolution {
 			}
 			k++;
 		}
-		System.out.println("LineNUmber = " + k);
 		//----Assign the complete set of cards for Player 1 from the given input
 		player1.setCards(player1cards);
 		//----Assign the complete set of cards for Player 2 from the given input

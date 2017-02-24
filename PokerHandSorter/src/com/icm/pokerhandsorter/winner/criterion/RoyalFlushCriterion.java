@@ -3,15 +3,11 @@
  */
 package com.icm.pokerhandsorter.winner.criterion;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import com.icm.pokerhandsorter.domain.Card;
-import com.icm.pokerhandsorter.domain.Player;
-import com.icm.pokerhandsorter.domain.Rank;
+
 
 /**
  * @author VDRKumar
@@ -21,7 +17,7 @@ public class RoyalFlushCriterion implements IRankingCriterion{
 	
 	public boolean matches(List<Card> playerCards){
 		LinkedHashSet<String> suiteSet = new LinkedHashSet<String>();
-		LinkedHashSet<String> numberSet = new LinkedHashSet<String>();
+		LinkedHashSet<Integer> numberSet = new LinkedHashSet<Integer>();
 		
 		for(Card card: playerCards){
 			//----Take all the card suites into a set, that will eliminate all duplicates, 
@@ -36,39 +32,16 @@ public class RoyalFlushCriterion implements IRankingCriterion{
 		//-----So, if suite set size is 1, then we can proceed to check the number set to be unique
 		if(suiteSet.size()==1 && numberSet.size() == 5){
 			//-- If the number set is unique and has all 5 high cards, then Royal Flush met
-			if(numberSet.contains("A") 
-				&& numberSet.contains("Q") 
-				&& numberSet.contains("K") 
-				&& numberSet.contains("J") 
-				&& numberSet.contains("10")){
-				System.out.println("hurray!! he is lucky, a gold flush found......");
+			if(numberSet.contains(14) 
+				&& numberSet.contains(13) 
+				&& numberSet.contains(12) 
+				&& numberSet.contains(11) 
+				&& numberSet.contains(10)){
 				return true;
 			}
 		}
 		
 		return false;
 	}
-
-/*	public void assignRanks(Player player){
-		
-		List<Card[]> allCards = player.getCards();
-		List<Rank> ranks = player.getRanks();
-	
-		for(Card[] cards : allCards){
-			List<Card> fiveCards = Arrays.stream(cards).collect(Collectors.toList());
-			
-			//--If royal flush scenario is true for player 1 then return him to winning podium
-			if(isItRoyalFlushScenario(fiveCards)){
-				Rank rank = new Rank();
-				rank.setCorrespondingCards(fiveCards);
-				rank.setRank(10);
-				rank.setPlayerName(player.getName());
-				ranks.add(rank);
-			}
-		}
-		
-		player.setRanks(ranks);	
-		
-	}*/
 
 }

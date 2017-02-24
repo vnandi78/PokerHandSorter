@@ -3,8 +3,11 @@
  */
 package com.icm.pokerhandsorter.winner;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -48,22 +51,26 @@ public class DetermineBestHand {
 		Iterator<Rank> iter2 = ranks2.iterator();
 		
 		if(ranks1.size() == ranks2.size()){
-			System.out.println("SAFE TO PROCEED..............FURTHER on RANK COMPARISON");
 			while(iter1.hasNext() && iter2.hasNext()){
 				Rank rank1 = iter1.next();
 				Rank rank2 = iter2.next();
 				
 				if(rank1.getRank()>rank2.getRank()){
 					player1WinningCount++;
-					System.out.println("player1WinningCount = " + player1WinningCount);
+					//System.out.println("player1WinningCount = " + player1WinningCount);
 				}
 				else if(rank1.getRank()<rank2.getRank()){
 					player2WinningCount++;
-					System.out.println("player2WinningCount = " + player2WinningCount);
+					//System.out.println("player2WinningCount = " + player2WinningCount);
 				}
 				else{
-					couldNotDeterWinner++;
-					System.out.println("both players have same ranks, player1-rank:" + rank1.getRank() + "; player2-rank:"+ rank2.getRank());
+					Rank rank = furtherChecksOntheWinningRank(rank1, rank2, rank1.getRank());
+					if(rank.getPlayerName().equalsIgnoreCase(player1.getName())){
+						player1WinningCount++;
+					}
+					else{
+						player2WinningCount++;
+					}
 				}
 			}
 		}
@@ -198,5 +205,163 @@ public class DetermineBestHand {
 		}
 		
 		player.setRanks(ranks);	
-	}	
+	}
+	
+	private static Rank furtherChecksOntheWinningRank(Rank rank1, Rank rank2, int equalizer){
+		Rank finalRank = null;
+		List<Card> cards1 = rank1.getCorrespondingCards();
+		List<Card> cards2 = rank2.getCorrespondingCards();
+		
+		if(equalizer==1 || equalizer==5 || equalizer == 6){
+			cards1.sort((Card c1, Card c2) -> c2.getNumber() - c1.getNumber());
+			cards2.sort((Card c1, Card c2) -> c2.getNumber() - c1.getNumber());
+			Iterator<Card> iter1 = cards1.iterator();
+			Iterator<Card> iter2 = cards2.iterator();
+			while(iter1.hasNext() && iter2.hasNext()){
+				Card card1 = iter1.next();
+				Card card2 = iter2.next();
+				if(card1.getNumber()>card2.getNumber()){
+					return rank1;
+				}
+				else if(card1.getNumber()<card2.getNumber()){
+					return rank2;
+				}
+				
+			}
+		}
+		else if(equalizer==2){
+			List<Integer> numberList1 = new ArrayList<Integer>();
+			List<Integer> numberList2 = new ArrayList<Integer>();
+			for(Card card: cards1){
+				//----Similarly, Take all the card numbers into a set, that will eliminate all duplicates, 
+				//----resulting to finding that all cards have unique number
+				numberList1.add(card.getNumber());
+			}
+			for(Card card: cards2){
+				//----Similarly, Take all the card numbers into a set, that will eliminate all duplicates, 
+				//----resulting to finding that all cards have unique number
+				numberList2.add(card.getNumber());
+			}
+			
+			LinkedHashSet<Integer> pairSet1 = numberList1.stream().filter(i -> Collections.frequency(numberList1, i) == 2)
+					.collect(Collectors.toCollection(LinkedHashSet::new));
+			
+			LinkedHashSet<Integer> pairSet2 = numberList2.stream().filter(i -> Collections.frequency(numberList2, i) == 2)
+					.collect(Collectors.toCollection(LinkedHashSet::new));
+			
+			
+			if(pairSet1.iterator().next()>pairSet2.iterator().next()){
+				return rank1;
+			}
+			else if(pairSet1.iterator().next()<pairSet2.iterator().next()){
+				return rank2;
+			}
+			else{
+				numberList1.remove(pairSet1.iterator().next());
+				numberList1.sort((a,b) -> b - a);
+				numberList2.remove(pairSet2.iterator().next());
+				numberList2.sort((a,b) -> b - a);
+				while(numberList1.iterator().hasNext() && numberList2.iterator().hasNext()){
+					if(numberList1.iterator().next()>numberList2.iterator().next()){
+						return rank1;
+					}
+					else if(numberList1.iterator().next()<numberList2.iterator().next()){
+						return rank2;
+					}
+				}
+			}
+
+		}
+		else if(equalizer==3){
+			List<Integer> numberList1 = new ArrayList<Integer>();
+			List<Integer> numberList2 = new ArrayList<Integer>();
+			for(Card card: cards1){
+				//----Similarly, Take all the card numbers into a set, that will eliminate all duplicates, 
+				//----resulting to finding that all cards have unique number
+				numberList1.add(card.getNumber());
+			}
+			for(Card card: cards2){
+				//----Similarly, Take all the card numbers into a set, that will eliminate all duplicates, 
+				//----resulting to finding that all cards have unique number
+				numberList2.add(card.getNumber());
+			}
+			
+			LinkedHashSet<Integer> pairSet1 = numberList1.stream().filter(i -> Collections.frequency(numberList1, i) == 2)
+					.collect(Collectors.toCollection(LinkedHashSet::new));
+			
+			LinkedHashSet<Integer> pairSet2 = numberList2.stream().filter(i -> Collections.frequency(numberList2, i) == 2)
+					.collect(Collectors.toCollection(LinkedHashSet::new));
+			
+			
+			while(pairSet1.iterator().hasNext() && pairSet2.iterator().hasNext()){
+				if(pairSet1.iterator().next()>pairSet2.iterator().next()){
+					return rank1;
+				}
+				else if(pairSet1.iterator().next()<pairSet2.iterator().next()){
+					return rank2;
+				}				
+			}
+			while(pairSet1.iterator().hasNext() && pairSet2.iterator().hasNext()){
+				numberList1.remove(pairSet1.iterator().next());
+				numberList2.remove(pairSet2.iterator().next());
+			}
+			
+			numberList1.sort((a,b) -> b - a);
+			
+			numberList2.sort((a,b) -> b - a);
+			while(numberList1.iterator().hasNext() && numberList2.iterator().hasNext()){
+				if(numberList1.iterator().next()>numberList2.iterator().next()){
+					return rank1;
+				}
+				else if(numberList1.iterator().next()<numberList2.iterator().next()){
+					return rank2;
+				}
+			}
+		}
+		else if(equalizer==4){
+			List<Integer> numberList1 = new ArrayList<Integer>();
+			List<Integer> numberList2 = new ArrayList<Integer>();
+			for(Card card: cards1){
+				//----Similarly, Take all the card numbers into a set, that will eliminate all duplicates, 
+				//----resulting to finding that all cards have unique number
+				numberList1.add(card.getNumber());
+			}
+			for(Card card: cards2){
+				//----Similarly, Take all the card numbers into a set, that will eliminate all duplicates, 
+				//----resulting to finding that all cards have unique number
+				numberList2.add(card.getNumber());
+			}
+			
+			LinkedHashSet<Integer> pairSet1 = numberList1.stream().filter(i -> Collections.frequency(numberList1, i) == 3)
+					.collect(Collectors.toCollection(LinkedHashSet::new));
+			
+			LinkedHashSet<Integer> pairSet2 = numberList2.stream().filter(i -> Collections.frequency(numberList2, i) == 3)
+					.collect(Collectors.toCollection(LinkedHashSet::new));
+			
+			
+			if(pairSet1.iterator().next()>pairSet2.iterator().next()){
+				return rank1;
+			}
+			else if(pairSet1.iterator().next()<pairSet2.iterator().next()){
+				return rank2;
+			}
+			else{
+				numberList1.remove(pairSet1.iterator().next());
+				numberList1.sort((a,b) -> b - a);
+				numberList2.remove(pairSet2.iterator().next());
+				numberList2.sort((a,b) -> b - a);
+				while(numberList1.iterator().hasNext() && numberList2.iterator().hasNext()){
+					if(numberList1.iterator().next()>numberList2.iterator().next()){
+						return rank1;
+					}
+					else if(numberList1.iterator().next()<numberList2.iterator().next()){
+						return rank2;
+					}
+				}
+			}
+			
+		}
+		
+		return finalRank;
+	}
 }

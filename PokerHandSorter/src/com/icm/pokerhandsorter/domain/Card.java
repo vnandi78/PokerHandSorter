@@ -9,20 +9,22 @@ package com.icm.pokerhandsorter.domain;
  */
 public class Card {
 	
-	String number;	
-	String suite;
+	int number;	
 	/**
 	 * @return the number
 	 */
-	public String getNumber() {
+	public int getNumber() {
 		return number;
 	}
 	/**
 	 * @param number the number to set
 	 */
-	public void setNumber(String number) {
+	public void setNumber(int number) {
 		this.number = number;
 	}
+
+	String suite;
+	
 	/**
 	 * @return the suite
 	 */
