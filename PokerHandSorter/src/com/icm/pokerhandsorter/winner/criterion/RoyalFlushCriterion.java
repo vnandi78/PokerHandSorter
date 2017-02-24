@@ -15,7 +15,7 @@ import com.icm.pokerhandsorter.domain.Card;
  */
 public class RoyalFlushCriterion implements IRankingCriterion{
 	
-	public boolean matches(List<Card> playerCards){
+	public static boolean matches(List<Card> playerCards){
 		LinkedHashSet<String> suiteSet = new LinkedHashSet<String>();
 		LinkedHashSet<Integer> numberSet = new LinkedHashSet<Integer>();
 		

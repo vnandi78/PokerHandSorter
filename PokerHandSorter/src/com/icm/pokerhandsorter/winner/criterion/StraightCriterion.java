@@ -15,7 +15,7 @@ import com.icm.pokerhandsorter.domain.Card;
  */
 public class StraightCriterion implements IRankingCriterion{
 	
-	public boolean matches(List<Card> playerCards){
+	public static boolean matches(List<Card> playerCards){
 		LinkedHashSet<Integer> numberSet = new LinkedHashSet<Integer>();
 		
 		for(Card card: playerCards){

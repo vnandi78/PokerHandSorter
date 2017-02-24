@@ -89,20 +89,7 @@ public class DetermineBestHand {
 		for(Card[] cards : allCards){
 			List<Card> fiveCards = Arrays.stream(cards).collect(Collectors.toList());
 
-
-			RoyalFlushCriterion royalFlushCriterion = new RoyalFlushCriterion();
-			StraightFlushCriterion straightFlushCriterion = new StraightFlushCriterion();
-			FourOfAKindCriterion fourOfAKindCriterion = new FourOfAKindCriterion();
-			FullHouseCriterion fullHouseCriterion = new FullHouseCriterion();
-			FlushCriterion flushCriterion = new FlushCriterion();
-			StraightCriterion straightCriterion = new StraightCriterion();
-			ThreeOfAKindCriterion threeOfAKindCriterion = new ThreeOfAKindCriterion();
-			TwoPairsCriterion twoPairsCriterion = new TwoPairsCriterion();
-			PairCriterion pairCriterion = new PairCriterion();
-//			HighCardCriterion highCardCriterion = new HighCardCriterion();
-
-
-			if(royalFlushCriterion.matches(fiveCards)){
+			if(RoyalFlushCriterion.matches(fiveCards)){
 			//-----------------------Rank 10 - Royal Flush Scenario-------------------------------------------------
 
 				Rank rank = new Rank();
@@ -111,7 +98,7 @@ public class DetermineBestHand {
 				rank.setPlayerName(player.getName());
 				ranks.add(rank);			
 			}
-			else if(straightFlushCriterion.matches(fiveCards)){
+			else if(StraightFlushCriterion.matches(fiveCards)){
 			//-----------------------Rank 9 - Straight flush Scenario-------------------------------------------------
 
 				Rank rank = new Rank();
@@ -121,7 +108,7 @@ public class DetermineBestHand {
 				ranks.add(rank);			
 				
 			}
-			else if(fourOfAKindCriterion.matches(fiveCards)){
+			else if(FourOfAKindCriterion.matches(fiveCards)){
 			//-----------------------Rank 8 - Four of a kind Scenario-------------------------------------------------
 
 				Rank rank = new Rank();
@@ -131,7 +118,7 @@ public class DetermineBestHand {
 				ranks.add(rank);			
 				
 			}
-			else if(fullHouseCriterion.matches(fiveCards)){
+			else if(FullHouseCriterion.matches(fiveCards)){
 			//-----------------------Rank 7 - Full House Scenario-------------------------------------------------
 
 				Rank rank = new Rank();
@@ -141,7 +128,7 @@ public class DetermineBestHand {
 				ranks.add(rank);			
 				
 			}
-			else if(flushCriterion.matches(fiveCards)){
+			else if(FlushCriterion.matches(fiveCards)){
 			//-----------------------Rank 6 - Flush Scenario-------------------------------------------------
 
 				Rank rank = new Rank();
@@ -151,7 +138,7 @@ public class DetermineBestHand {
 				ranks.add(rank);			
 				
 			}
-			else if(straightCriterion.matches(fiveCards)){
+			else if(StraightCriterion.matches(fiveCards)){
 			//-----------------------Rank 5 - Straight Scenario-------------------------------------------------
 
 				Rank rank = new Rank();
@@ -161,7 +148,7 @@ public class DetermineBestHand {
 				ranks.add(rank);			
 				
 			}
-			else if(threeOfAKindCriterion.matches(fiveCards)){
+			else if(ThreeOfAKindCriterion.matches(fiveCards)){
 			//-----------------------Rank 4 - Three of a Kind Scenario-------------------------------------------------
 
 				Rank rank = new Rank();
@@ -171,7 +158,7 @@ public class DetermineBestHand {
 				ranks.add(rank);			
 				
 			}
-			else if(twoPairsCriterion.matches(fiveCards)){
+			else if(TwoPairsCriterion.matches(fiveCards)){
 			//-----------------------Rank 3 - Two Pairs Scenario-------------------------------------------------		
 
 				Rank rank = new Rank();
@@ -181,7 +168,7 @@ public class DetermineBestHand {
 				ranks.add(rank);			
 				
 			}
-			else if(pairCriterion.matches(fiveCards)){
+			else if(PairCriterion.matches(fiveCards)){
 			//-----------------------Rank 2 - Pair Scenario-------------------------------------------------
 
 				Rank rank = new Rank();
