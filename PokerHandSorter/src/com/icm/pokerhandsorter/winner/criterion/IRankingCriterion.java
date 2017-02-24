@@ -3,7 +3,9 @@
  */
 package com.icm.pokerhandsorter.winner.criterion;
 
-import com.icm.pokerhandsorter.domain.Player;
+import java.util.List;
+
+import com.icm.pokerhandsorter.domain.Card;
 
 /**
  * @author VDRKumar
@@ -11,6 +13,6 @@ import com.icm.pokerhandsorter.domain.Player;
  */
 public interface IRankingCriterion {
 	
-	public void assignRanks(Player player);
+	public boolean matches(List<Card> playerCards);
 
 }

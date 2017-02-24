@@ -19,7 +19,7 @@ import com.icm.pokerhandsorter.domain.Rank;
  */
 public class RoyalFlushCriterion implements IRankingCriterion{
 	
-	public boolean isItRoyalFlushScenario(List<Card> playerCards){
+	public boolean matches(List<Card> playerCards){
 		LinkedHashSet<String> suiteSet = new LinkedHashSet<String>();
 		LinkedHashSet<String> numberSet = new LinkedHashSet<String>();
 		
@@ -49,10 +49,10 @@ public class RoyalFlushCriterion implements IRankingCriterion{
 		return false;
 	}
 
-	public void assignRanks(Player player){
+/*	public void assignRanks(Player player){
 		
 		List<Card[]> allCards = player.getCards();
-		List<Rank> ranks = new ArrayList<Rank>();
+		List<Rank> ranks = player.getRanks();
 	
 		for(Card[] cards : allCards){
 			List<Card> fiveCards = Arrays.stream(cards).collect(Collectors.toList());
@@ -69,6 +69,6 @@ public class RoyalFlushCriterion implements IRankingCriterion{
 		
 		player.setRanks(ranks);	
 		
-	}
+	}*/
 
 }

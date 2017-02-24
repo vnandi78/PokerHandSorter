@@ -3,6 +3,7 @@
  */
 package com.icm.pokerhandsorter.domain;
 
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -14,6 +15,10 @@ public class Player {
 	String name;
 	List<Card[]> cards;
 	List<Rank> ranks;
+	
+	public Player(){
+		ranks = new LinkedList<Rank>();
+	}
 	
 	/**
 	 * @return the ranks

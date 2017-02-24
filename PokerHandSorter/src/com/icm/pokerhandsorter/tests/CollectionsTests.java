@@ -13,11 +13,11 @@ public class CollectionsTests {
 		
 		numbers.add("J");
 		numbers.add("J");
-		numbers.add("J");
-		numbers.add("J");
+		numbers.add("Q");
+		numbers.add("Q");
 		numbers.add("5");
 		
-		LinkedHashSet<String> numberSet = numbers.stream().filter(i -> Collections.frequency(numbers, i) ==4)
+		LinkedHashSet<String> numberSet = numbers.stream().filter(i -> Collections.frequency(numbers, i) ==2)
         .collect(Collectors.toCollection(LinkedHashSet::new));
 		
 		System.out.println("size = " + numberSet.size());

@@ -20,7 +20,7 @@ import com.icm.pokerhandsorter.domain.Rank;
  */
 public class FullHouseCriterion implements IRankingCriterion{
 	
-	private boolean isItFullHouseScenario(List<Card> playerCards){
+	public boolean matches(List<Card> playerCards){
 		List<String> numberList = new ArrayList<String>();
 		
 		for(Card card: playerCards){
@@ -42,9 +42,9 @@ public class FullHouseCriterion implements IRankingCriterion{
 		return false;
 	}
 
-	public void assignRanks(Player player){
+/*	public void assignRanks(Player player){
 		List<Card[]> allCards = player.getCards();
-		List<Rank> ranks = new ArrayList<Rank>();
+		List<Rank> ranks = player.getRanks();
 	
 		for(Card[] cards : allCards){
 			List<Card> fiveCards = Arrays.stream(cards).collect(Collectors.toList());
@@ -61,5 +61,5 @@ public class FullHouseCriterion implements IRankingCriterion{
 		
 		player.setRanks(ranks);	
 	}	
-
+*/
 }

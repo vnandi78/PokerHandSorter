@@ -19,7 +19,7 @@ import com.icm.pokerhandsorter.domain.Rank;
  */
 public class StraightFlushCriterion implements IRankingCriterion {
 
-	private boolean isItStraightFlushScenario(List<Card> playerCards){
+	public boolean matches(List<Card> playerCards){
 		LinkedHashSet<String> suiteSet = new LinkedHashSet<String>();
 		LinkedHashSet<String> numberSet = new LinkedHashSet<String>();
 		
@@ -34,26 +34,32 @@ public class StraightFlushCriterion implements IRankingCriterion {
 		}
 		
 		if(suiteSet.size()==1 && numberSet.size()==5){
-			if(numberSet.contains("A")){
+/*			if(numberSet.contains("A")){
 				if(numberSet.contains("K") && numberSet.contains("Q") && numberSet.contains("J") && numberSet.contains("10")){
 					return true;
 				}
 			}
-			else if(numberSet.contains("K")){
-				if(numberSet.contains("Q") && numberSet.contains("J") && numberSet.contains("10") && numberSet.contains("9")){
+			else */
+			if(numberSet.contains("K")){
+				if(numberSet.contains("Q") && numberSet.contains("J") && numberSet.contains("T") && numberSet.contains("9")){
 					return true;
 				}
 			}
 			else if(numberSet.contains("Q")){
-				if(numberSet.contains("J") && numberSet.contains("10") && numberSet.contains("9") && numberSet.contains("8")){
+				if(numberSet.contains("J") && numberSet.contains("T") && numberSet.contains("9") && numberSet.contains("8")){
 					return true;
 				}
 			}
 			else if(numberSet.contains("J")){
-				if(numberSet.contains("10") && numberSet.contains("9") && numberSet.contains("8") && numberSet.contains("7")){
+				if(numberSet.contains("T") && numberSet.contains("9") && numberSet.contains("8") && numberSet.contains("7")){
 					return true;
 				}
 			}
+			else if(numberSet.contains("T")){
+				if(numberSet.contains("6") && numberSet.contains("9") && numberSet.contains("8") && numberSet.contains("7")){
+					return true;
+				}
+			}			
 			else{
 				numberSet.stream().sorted();
 				String number = numberSet.iterator().next();
@@ -73,9 +79,9 @@ public class StraightFlushCriterion implements IRankingCriterion {
 		return false;
 	}
 
-	public void assignRanks(Player player){
+/*	public void assignRanks(Player player){
 		List<Card[]> allCards = player.getCards();
-		List<Rank> ranks = new ArrayList<Rank>();
+		List<Rank> ranks = player.getRanks();
 	
 		for(Card[] cards : allCards){
 			List<Card> fiveCards = Arrays.stream(cards).collect(Collectors.toList());
@@ -92,5 +98,5 @@ public class StraightFlushCriterion implements IRankingCriterion {
 		}
 		
 		player.setRanks(ranks);	
-	}
+	}*/
 }

@@ -51,5 +51,7 @@ public class Rank {
 		this.playerName = playerName;
 	}
 	
-	
+	public String toString(){
+		return this.playerName + "; rank = " + this.getRank()  + " ; corresponding cards : " + this.getCorrespondingCards().toString();
+	}
 }

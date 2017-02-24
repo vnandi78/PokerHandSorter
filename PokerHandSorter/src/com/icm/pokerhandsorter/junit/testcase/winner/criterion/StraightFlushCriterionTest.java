@@ -8,40 +8,26 @@ import static org.junit.Assert.assertEquals;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.junit.After;
-import org.junit.Before;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
 import com.icm.pokerhandsorter.domain.Card;
-import com.icm.pokerhandsorter.winner.criterion.RoyalFlushCriterion;
+import com.icm.pokerhandsorter.winner.criterion.StraightFlushCriterion;
 
 /**
  * @author VDRKumar
  *
  */
-public class RoyalFlushCriterionTest {
-
-	/**
-	 * @throws java.lang.Exception
-	 */
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	/**
-	 * @throws java.lang.Exception
-	 */
-	@After
-	public void tearDown() throws Exception {
-	}
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
+public class StraightFlushCriterionTest {
 
 	@Test
-	public void testRoyalFlushCriterion() {
+	public void testIsStraightFlushSuccess() {
 		List<Card> successCards = new LinkedList<Card>();
-		List<Card> failureCards = new LinkedList<Card>();
-		
+	
 		Card card1 = new Card();
-		card1.setNumber("A");
+		card1.setNumber("9");
 		card1.setSuite("C");
 		
 		Card card2 = new Card();
@@ -66,9 +52,22 @@ public class RoyalFlushCriterionTest {
 		successCards.add(card4);
 		successCards.add(card5);
 		
-		RoyalFlushCriterion royalFlushCrit = new RoyalFlushCriterion();
-		assertEquals("RoyalFlushCriterion Met : ", true, royalFlushCrit.matches(successCards));
+		StraightFlushCriterion straightFlushCrit = new StraightFlushCriterion();
+		assertEquals("StraightFlushCriterion Met : ", true, straightFlushCrit.matches(successCards));
 		
+	}
+	
+	@Test
+	public void testIsStraightFlushFailure() {
+		
+		List<Card> failureCards = new LinkedList<Card>();
+		
+		Card card1 = new Card();
+		Card card2 = new Card();
+		Card card3 = new Card();
+		Card card4 = new Card();
+		Card card5 = new Card();
+
 		card1.setNumber("A");
 		card1.setSuite("C");
 		
@@ -90,7 +89,8 @@ public class RoyalFlushCriterionTest {
 		failureCards.add(card4);
 		failureCards.add(card5);
 		
-		assertEquals("RoyalFlushCriterion Met : ", false, royalFlushCrit.matches(failureCards));
+		StraightFlushCriterion straightFlushCrit = new StraightFlushCriterion();
+		assertEquals("StraightFlushCriterion Not Met : ", false, straightFlushCrit.matches(failureCards));
 		
 	}
 

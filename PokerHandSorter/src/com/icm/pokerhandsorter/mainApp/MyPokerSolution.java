@@ -31,18 +31,20 @@ public class MyPokerSolution {
 		//---Init Cards for Player 2
 		ArrayList<Card[]> player2cards = new ArrayList<Card[]>();
 		
+		int k=1;
 		//--Reading input from command line
 		while(scanner.hasNextLine()){
 			//--Reading each line
-			String line = scanner.nextLine().trim();
+			String line = scanner.nextLine();
+			
 			//--Split each line by space to collect each card information
 			String[] inputArray = line.split("\\s");
 			System.out.println("inputArray = " + inputArray);
 			
 			int i=0;
 			int j=0;
-			Card[] cards1 = new Card[]{};
-			Card[] cards2 = new Card[]{};
+			Card[] cards1 = new Card[5];
+			Card[] cards2 = new Card[5];
 			
 			for(String input: inputArray){
 				//----build card with the given information
@@ -74,8 +76,9 @@ public class MyPokerSolution {
 			
 				i++;
 			}
+			k++;
 		}
-
+		System.out.println("LineNUmber = " + k);
 		//----Assign the complete set of cards for Player 1 from the given input
 		player1.setCards(player1cards);
 		//----Assign the complete set of cards for Player 2 from the given input
