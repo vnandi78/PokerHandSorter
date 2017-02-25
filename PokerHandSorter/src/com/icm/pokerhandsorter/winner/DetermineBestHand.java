@@ -230,10 +230,10 @@ public class DetermineBestHand {
 				numberList2.add(card.getNumber());
 			}
 			
-			LinkedHashSet<Integer> pairSet1 = numberList1.stream().filter(i -> Collections.frequency(numberList1, i) == 2)
+			LinkedHashSet<Integer> pairSet1 = numberList1.parallelStream().filter(i -> Collections.frequency(numberList1, i) == 2)
 					.collect(Collectors.toCollection(LinkedHashSet::new));
 			
-			LinkedHashSet<Integer> pairSet2 = numberList2.stream().filter(i -> Collections.frequency(numberList2, i) == 2)
+			LinkedHashSet<Integer> pairSet2 = numberList2.parallelStream().filter(i -> Collections.frequency(numberList2, i) == 2)
 					.collect(Collectors.toCollection(LinkedHashSet::new));
 			
 			
@@ -273,10 +273,10 @@ public class DetermineBestHand {
 				numberList2.add(card.getNumber());
 			}
 			
-			LinkedHashSet<Integer> pairSet1 = numberList1.stream().filter(i -> Collections.frequency(numberList1, i) == 2)
+			LinkedHashSet<Integer> pairSet1 = numberList1.parallelStream().filter(i -> Collections.frequency(numberList1, i) == 2)
 					.collect(Collectors.toCollection(LinkedHashSet::new));
 			
-			LinkedHashSet<Integer> pairSet2 = numberList2.stream().filter(i -> Collections.frequency(numberList2, i) == 2)
+			LinkedHashSet<Integer> pairSet2 = numberList2.parallelStream().filter(i -> Collections.frequency(numberList2, i) == 2)
 					.collect(Collectors.toCollection(LinkedHashSet::new));
 			
 			
@@ -319,10 +319,10 @@ public class DetermineBestHand {
 				numberList2.add(card.getNumber());
 			}
 			
-			LinkedHashSet<Integer> pairSet1 = numberList1.stream().filter(i -> Collections.frequency(numberList1, i) == 3)
+			LinkedHashSet<Integer> pairSet1 = numberList1.parallelStream().filter(i -> Collections.frequency(numberList1, i) == 3)
 					.collect(Collectors.toCollection(LinkedHashSet::new));
 			
-			LinkedHashSet<Integer> pairSet2 = numberList2.stream().filter(i -> Collections.frequency(numberList2, i) == 3)
+			LinkedHashSet<Integer> pairSet2 = numberList2.parallelStream().filter(i -> Collections.frequency(numberList2, i) == 3)
 					.collect(Collectors.toCollection(LinkedHashSet::new));
 			
 			
